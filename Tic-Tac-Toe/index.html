@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<html>
+  <!--CITATION: w3schools -->
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSE 183 - Assignment 3</title>
+
+    <!-- UI OF BOARD-->
+    <style>
+      body {
+        font-family: monospace;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      header {
+        margin-bottom: 900px;
+        margin-right: 90px;
+        font-size: 25px;
+      }
+
+      .gameboard button {
+        font-family: monospace;
+        font-size: 60px;
+        width: 300px;
+        height: 300px;
+      }
+
+      .reset {
+        margin-top: 50px;
+        font-size: 50px;
+        margin-top: 90px;
+      }
+
+      td {
+        background-color: #cfe1e5;
+        border: 4px solid #5f9dcd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 700px;
+        height: 700px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="is-size-2"><strong>Tic Tac Toe</strong></h1>
+    </header>
+
+    <div id="myapp">
+      <!--TIC TAC TOE GRID-->
+      <!-- v-on:click from vue.js documentation-->
+      <table class="gameboard">
+        <tr>
+          <td>
+            <button class="cell-0-0" v-on:click="clickOnCell(0,0)">
+              {{board[0][0]}}
+            </button>
+          </td>
+          <td>
+            <button class="cell-0-1" v-on:click="clickOnCell(0,1)">
+              {{board[0][1]}}
+            </button>
+          </td>
+          <td>
+            <button class="cell-0-2" v-on:click="clickOnCell(0,2)">
+              {{board[0][2]}}
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="cell-1-0" v-on:click="clickOnCell(1,0)">
+              {{board[1][0]}}
+            </button>
+          </td>
+          <td>
+            <button class="cell-1-1" v-on:click="clickOnCell(1,1)">
+              {{board[1][1]}}
+            </button>
+          </td>
+          <td>
+            <button class="cell-1-2" v-on:click="clickOnCell(1,2)">
+              {{board[1][2]}}
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button class="cell-2-0" v-on:click="clickOnCell(2,0)">
+              {{board[2][0]}}
+            </button>
+          </td>
+          <td>
+            <button class="cell-2-1" v-on:click="clickOnCell(2,1)">
+              {{board[2][1]}}
+            </button>
+          </td>
+          <td>
+            <button class="cell-2-2" v-on:click="clickOnCell(2,2)">
+              {{board[2][2]}}
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <!-- TO RESET GAME-->
+      <button class="reset" v-on:click="resetGame()">Reset</button>
+    </div>
+    <!-- CONNECTING VUE.JS-->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="tictactoe.js"></script>
+  </body>
+</html>
