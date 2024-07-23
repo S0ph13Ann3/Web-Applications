@@ -1,2 +1,6 @@
-The test for the assignment will be posted here:
-https://github.com/ucsc2024-cse183/class_code/assignments/assignment1/README.md
+## ✩ ABOUT
+A webpage designed using the Bulma CSS library. It features a structured layout with a header, two main sections, and a footer. The top section displays a full-width image of a cat, while the bottom section is divided into six columns, each containing a styled card with text and a button. The footer includes links to the class code and an email link.
+
+## ✩ BUILT WITH
+- Bulma CSS
+- HTML
