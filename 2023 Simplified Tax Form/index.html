@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html>
+  <!--CITATION: Bulma.io -->
+
+  <head>
+    <!--From bulma.io: How to install Bulma page -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSE 183 - Assignment 2</title>
+
+    <!--Linking Bulma CSS library -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1 class="is-size-2"><strong>2023 Simplified Tax Form</strong></h1>
+    </header>
+
+    <table class="table is-striped is-fullwidth">
+      <form id="taxTable">
+        <tbody>
+          <!--INCOME SECTION -->
+          <tr class="row-1">
+            <td rowspan="6">Income</td>
+            <td>
+              <strong>1</strong> Wages, salaries, and tips. This should be shown
+              in box 1 of your Form(s) W-2. Attach your Form(s) W-2.
+            </td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-1"
+                oninput="taxableIncome()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-2">
+            <td><strong>2</strong> Taxable interest from 1099 forms</td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-2"
+                oninput="taxableIncome()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-3">
+            <td><strong>3</strong> Other Income not included in 1 and 2.</td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-3"
+                oninput="taxableIncome()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-4">
+            <td>
+              <strong>4</strong> Add lines 1, 2, and 3. This is your adjusted
+              gross income.
+            </td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-4"
+                readonly
+                oninput="taxableIncome()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-5">
+            <td>
+              <strong>5</strong> If this a joint return, add you spouse as a
+              dependent. Write $13,850 for an invidual return and $27,700 for a
+              joint return.<br />
+
+              <label class="checkbox">
+                Spouse
+                <input
+                  type="checkbox"
+                  id="filing-j"
+                  name="filing-jointly"
+                  oninput="taxableIncome()"
+                />
+              </label>
+            </td>
+
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-5"
+                readonly
+                oninput="taxableIncome()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-6">
+            <td>
+              <strong>6</strong> Substract line 5 from line 4. If line 5 is
+              larger than line 4, enter -0-. This is your taxable income.
+            </td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-6"
+                readonly
+                oninput="taxableIncome()"
+              />
+            </td>
+          </tr>
+
+          <!--PAYMENT SECTION-->
+          <tr class="row-7">
+            <td rowspan="6">Payments, Credits, and Tax</td>
+            <td>
+              <strong>7</strong> Federal income tax withheld from Form(s)W-2 and
+              1099.
+            </td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-7"
+                oninput="totalTax()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-8">
+            <td><strong>8</strong> Earned income credit (EIC)</td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-8"
+                oninput="totalTax()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-9">
+            <td>
+              <strong>9</strong> Add lines 7 and 8a. These are your total
+              payments and credits.
+            </td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-9"
+                readonly
+                oninput="totalTax()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-10">
+            <td>
+              <strong>10</strong> Tax. Use amount on line 6 above to find your
+              tax table in the instructions. Then, enter the tax from the table
+              on this line.
+            </td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-10"
+                readonly
+                oninput="totalTax()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-11">
+            <td><strong>11</strong> Other Taxes</td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-11"
+                oninput="totalTax()"
+              />
+            </td>
+          </tr>
+
+          <tr class="row-12">
+            <td>
+              <strong>12</strong> Add lines 10 and 11. This is your total tax.
+            </td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-12"
+                readonly
+                oninput="totalTax()"
+              />
+            </td>
+          </tr>
+
+          <!--REFUND SECTION -->
+          <tr class="row-13">
+            <td rowspan="1">Refund</td>
+            <td>
+              <strong>13</strong> If line 9 is larger than line 12, subtract
+              line 12 from line 9. This is your refund. If Form 8888 is
+              attached, check here
+            </td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-13"
+                readonly
+                oninput="totalTax()"
+              />
+            </td>
+          </tr>
+
+          <!--AMOUNT SECTION-->
+          <tr class="row-14">
+            <td rowspan="1">Amount you owe</td>
+            <td>
+              <strong>14</strong> If line 12 is larger than line 9, subtract
+              line 9 from line 12. This is the amount you owe. For details on
+              how to pay, see instructions.
+            </td>
+            <td>
+              <input
+                class="input"
+                type="number"
+                name="value-14"
+                readonly
+                oninput="totalTax()"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </form>
+    </table>
+
+    <!--JavaScript-->
+
+    <script>
+      "use strict";
+      //TAX RATE
+      var rates = [
+        [10, 0, 0],
+        [12, 11000, 22000],
+        [22, 44725, 89450],
+        [24, 95375, 190750],
+        [32, 182100, 364200],
+        [35, 231250, 462500],
+        [37, 578125, 693750],
+      ];
+
+      //CONNECTION PART FOR HTML SECTION
+      const taxForm = document.getElementById("taxTable");
+
+      taxForm.addEventListener("input", () => {
+        taxableIncome();
+      });
+
+      //have certain rows start with zero
+      document.getElementsByName("value-4")[0].value = 0;
+      document.getElementsByName("value-6")[0].value = 0;
+      document.getElementsByName("value-9")[0].value = 0;
+      document.getElementsByName("value-10")[0].value = 0;
+      document.getElementsByName("value-13")[0].value = 0;
+      document.getElementsByName("value-14")[0].value = 0;
+
+      const filingJoint = document.getElementById("filing-j");
+      var amount = 0;
+      if (filingJoint.checked) {
+        amount = 27700;
+      } else {
+        amount = 13850;
+      }
+      document.getElementsByName("value-5")[0].value = amount;
+
+      //INCOME SECTION
+      function taxableIncome() {
+        //CALCULATING TOTAL INCOME
+        const value1 = parseFloat(
+          document.getElementsByName("value-1")[0].value || 0
+        );
+        const value2 = parseFloat(
+          document.getElementsByName("value-2")[0].value || 0
+        );
+        const value3 = parseFloat(
+          document.getElementsByName("value-3")[0].value || 0
+        );
+
+        //Equation to calculate total income:
+        const incomeTotal = value1 + value2 + value3;
+        document.getElementsByName("value-4")[0].value = incomeTotal;
+
+        //FILING JOINT
+        const filingJoint = document.getElementById("filing-j");
+        var amount = 0;
+        if (filingJoint.checked) {
+          amount = 27700;
+        } else {
+          amount = 13850;
+        }
+        document.getElementsByName("value-5")[0].value = amount;
+
+        //CALCULATION OF TAXABLE INCOME
+        var taxIncome = amount - incomeTotal;
+
+        //If tax income is negative turn to positive:
+
+        if (amount > incomeTotal) {
+          document.getElementsByName("value-6")[0].value = 0;
+        } else {
+          if (taxIncome < 0) {
+            taxIncome = taxIncome * -1;
+            document.getElementsByName("value-6")[0].value = taxIncome;
+          } else {
+            document.getElementsByName("value-6")[0].value = taxIncome;
+          }
+        }
+
+        totalTax();
+      }
+
+      function totalTax() {
+        //PAYMENTS, CREDITS, and TAX SECTION
+        
+        //getting row 7,8's values
+        const value7 = parseFloat(
+          document.getElementsByName("value-7")[0].value || 0
+        );
+        const value8 = parseFloat(
+          document.getElementsByName("value-8")[0].value || 0
+        );
+
+        //Equation to calculate total payment and credits:
+        const totalPayment = value7 + value8;
+        document.getElementsByName("value-9")[0].value = totalPayment;
+
+        //getting row 6 value again
+        const tax_income = parseFloat(
+          document.getElementsByName("value-6")[0].value || 0
+        );
+
+        //getting row 5 value again
+        const filingJ = document.getElementById("filing-j").checked;
+
+        //Calculating for row 10
+        let tax_amount = 0;
+        let moneyRemaining = tax_income;
+        let lowerBound;
+        if (filingJ) {
+          lowerBound = 2;
+        } else {
+          lowerBound = 1;
+        }
+
+        let currIncome;
+
+        for (let x = 0; x < rates.length; x++) {
+          let taxPercentage = rates[x][0] / 100;
+          if (x == rates.length - 1) {
+            currIncome = Infinity;
+          } else {
+            currIncome = rates[x + 1][lowerBound] - rates[x][lowerBound];
+          }
+
+          if (moneyRemaining > currIncome) {
+            //tax only the current income add to tax_amount
+            const taxed = currIncome * taxPercentage;
+            moneyRemaining = moneyRemaining - currIncome;
+            tax_amount = tax_amount + taxed;
+          } else {
+            const taxed = moneyRemaining * taxPercentage;
+            moneyRemaining = 0;
+            tax_amount = tax_amount + taxed;
+            break;
+          }
+        }
+        //setting row 10 value
+        document.getElementsByName("value-10")[0].value = tax_amount;
+
+        //getting row 11
+        const otherTax = parseFloat(
+          document.getElementsByName("value-11")[0].value || 0
+        );
+
+        //calculate row 12
+        const total_tax = tax_amount + otherTax;
+        document.getElementsByName("value-12")[0].value = total_tax;
+
+        //getting row 9 value
+        const total_paycred = parseFloat(
+          document.getElementsByName("value-9")[0].value || 0
+        );
+
+        //getting row 12 value
+        const total_taxx = parseFloat(
+          document.getElementsByName("value-12")[0].value || 0
+        );
+
+        //calculating row 13 and 14 row
+        if (total_paycred > total_taxx) {
+          const refund = (total_taxx - total_paycred) * -1;
+
+          document.getElementsByName("value-13")[0].value = refund || 0;
+          document.getElementsByName("value-14")[0].value = 0;
+        } else {
+          let owedAmount = total_paycred - total_taxx;
+
+          if (owedAmount < 0) {
+            owedAmount = owedAmount * -1;
+          }
+          document.getElementsByName("value-14")[0].value = owedAmount || 0;
+          document.getElementsByName("value-13")[0].value = 0;
+        }
+      }
+    </script>
+  </body>
+</html>
