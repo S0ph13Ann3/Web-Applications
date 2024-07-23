@@ -4,3 +4,4 @@ This webpage is an interactive form that mimics the 1040EZ tax form, styled usin
 ## ✩ BUILT WITH
 - HTML
 - Bulma CSS
+- Javascript
